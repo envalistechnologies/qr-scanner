@@ -75,8 +75,8 @@ export const ADMOB_PROD_IDS = {
 };
 
 export const ADS_CONFIG: MonetizationConfig = {
-  // Always default to Test Mode in development environments and Expo Go
-  isTestMode: typeof __DEV__ !== 'undefined' ? __DEV__ : true,
+  // Use Test Mode only when __DEV__ is true; default to false for production release builds
+  isTestMode: typeof __DEV__ !== 'undefined' ? __DEV__ : false,
   testUnitIds: ADMOB_TEST_IDS,
   productionUnitIds: ADMOB_PROD_IDS,
   

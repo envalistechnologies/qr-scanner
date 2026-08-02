@@ -18,6 +18,8 @@
     "android": {
       "package": "com.quickscan.qr.barcode",
       "versionCode": 1,
+      "versionName": "1.0.0",
+      "jsEngine": "hermes",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516"
       },

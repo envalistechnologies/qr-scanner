@@ -18,7 +18,7 @@ export const AdInterstitialModal: React.FC = () => {
     const adService = AdService.getInstance();
     const unsubscribe = adService.subscribeToInterstitial((isVis, id, reason) => {
       setVisible(isVis);
-      setUnitId(id || 'ca-app-pub-3940256099942544/1033173712');
+      setUnitId(id || 'ca-app-pub-7583323986111464/5173455105');
       setTriggerReason(reason || 'Sponsored Content Display');
       setCountdown(2);
     });
