@@ -19,7 +19,6 @@
         "buildType": "app-bundle",
         "gradleCommand": ":app:bundleRelease"
       },
-      "channel": "production",
       "env": {
         "EXPO_PUBLIC_ENV": "production",
         "EAS_BUILD_NO_EXPO_GO_WARNING": "true"
