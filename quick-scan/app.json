@@ -7,14 +7,12 @@
     "icon": "./assets/images/logo.png",
     "scheme": "quickscan",
     "userInterfaceStyle": "automatic",
-
     "ios": {
       "icon": "./assets/images/logo.png",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516"
       }
     },
-
     "android": {
       "package": "com.quickscan.qr.barcode",
       "versionCode": 1,
@@ -41,15 +39,12 @@
       ],
       "predictiveBackGestureEnabled": false
     },
-
     "web": {
       "output": "static",
       "favicon": "./assets/images/logo.png"
     },
-
     "plugins": [
       "expo-router",
-
       [
         "expo-splash-screen",
         {
@@ -59,14 +54,16 @@
         }
       ]
     ],
-
     "experiments": {
       "typedRoutes": false,
       "reactCompiler": true
     },
-
     "extra": {
-      "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516"
+      "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516",
+      "router": {},
+      "eas": {
+        "projectId": "eb45507d-1961-4194-b534-8c056996b13d"
+      }
     }
   }
 }
