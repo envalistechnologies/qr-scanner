@@ -1,0 +1,70 @@
+{
+  "expo": {
+    "name": "Quick Scan",
+    "slug": "quick-scan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo.png",
+    "scheme": "quickscan",
+    "userInterfaceStyle": "automatic",
+
+    "ios": {
+      "icon": "./assets/images/logo.png",
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516"
+      }
+    },
+
+    "android": {
+      "package": "com.quickscan.qr.barcode",
+      "versionCode": 1,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516"
+      },
+      "adaptiveIcon": {
+        "backgroundColor": "#F8FAFC",
+        "foregroundImage": "./assets/images/logo.png",
+        "monochromeImage": "./assets/images/logo.png"
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_MEDIA_IMAGES",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "VIBRATE",
+        "INTERNET"
+      ],
+      "blockedPermissions": [
+        "RECORD_AUDIO"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/logo.png"
+    },
+
+    "plugins": [
+      "expo-router",
+
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#2563EB",
+          "image": "./assets/images/logo.png",
+          "imageWidth": 140
+        }
+      ]
+    ],
+
+    "experiments": {
+      "typedRoutes": false,
+      "reactCompiler": true
+    },
+
+    "extra": {
+      "googleMobileAdsAppId": "ca-app-pub-7583323986111464~3189189516"
+    }
+  }
+}
