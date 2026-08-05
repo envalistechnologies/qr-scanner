@@ -7,6 +7,16 @@ import { View, Text, StyleSheet, Modal, Pressable, SafeAreaView, Alert } from 'r
 import { useTheme, Surface, Button } from 'react-native-paper';
 import { AdService } from '../../features/ads/AdService';
 
+let InterstitialAd: any = null;
+let AdEventType: any = null;
+try {
+  const ads = require('react-native-google-mobile-ads');
+  InterstitialAd = ads.InterstitialAd;
+  AdEventType = ads.AdEventType;
+} catch (e) {
+  InterstitialAd = null;
+}
+
 export const AdInterstitialModal: React.FC = () => {
   const theme = useTheme();
   const [visible, setVisible] = useState<boolean>(false);
@@ -17,8 +27,53 @@ export const AdInterstitialModal: React.FC = () => {
   useEffect(() => {
     const adService = AdService.getInstance();
     const unsubscribe = adService.subscribeToInterstitial((isVis, id, reason) => {
-      setVisible(isVis);
-      setUnitId(id || 'ca-app-pub-7583323986111464/5173455105');
+      if (!isVis) {
+        setVisible(false);
+        return;
+      }
+
+      const targetUnitId = id || 'ca-app-pub-7583323986111464/5173455105';
+
+      // Execute genuine native Google AdMob Interstitial ad in production Android builds
+      if (InterstitialAd && AdEventType) {
+        try {
+          const ad = InterstitialAd.createForAdRequest(targetUnitId, {
+            requestNonPersonalizedAdsOnly: false,
+          });
+
+          const onLoaded = ad.addAdEventListener(AdEventType.LOADED, () => {
+            ad.show().catch((err: any) => {
+              console.log('[AdMob Interstitial] Show failed:', err);
+              AdService.getInstance().dismissInterstitial();
+            });
+          });
+
+          const onClosed = ad.addAdEventListener(AdEventType.CLOSED, () => {
+            onLoaded();
+            onClosed();
+            AdService.getInstance().dismissInterstitial();
+          });
+
+          const onError = ad.addAdEventListener(AdEventType.ERROR, (err: any) => {
+            console.log('[AdMob Interstitial] Load/Display error:', err);
+            onLoaded();
+            onClosed();
+            onError();
+            AdService.getInstance().dismissInterstitial();
+          });
+
+          ad.load();
+          return;
+        } catch (err) {
+          console.log('[AdMob Interstitial] Exception creating native ad, dismissing:', err);
+          AdService.getInstance().dismissInterstitial();
+          return;
+        }
+      }
+
+      // Fallback simulated UI exclusively for Expo Go desktop simulation
+      setVisible(true);
+      setUnitId(targetUnitId);
       setTriggerReason(reason || 'Sponsored Content Display');
       setCountdown(2);
     });

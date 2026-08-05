@@ -7,6 +7,16 @@ import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Text, useTheme, Surface } from 'react-native-paper';
 import { AdService } from '../../features/ads/AdService';
 
+let BannerAd: any = null;
+let BannerAdSize: any = null;
+try {
+  const ads = require('react-native-google-mobile-ads');
+  BannerAd = ads.BannerAd;
+  BannerAdSize = ads.BannerAdSize;
+} catch (e) {
+  BannerAd = null;
+}
+
 export interface AdBannerViewProps {
   screenName: string;
   style?: StyleProp<ViewStyle>;
@@ -22,6 +32,7 @@ export const AdBannerView: React.FC<AdBannerViewProps> = ({
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
   const [unitId, setUnitId] = useState<string | undefined>(undefined);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [adFailed, setAdFailed] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -33,6 +44,7 @@ export const AdBannerView: React.FC<AdBannerViewProps> = ({
           setIsAuthorized(true);
           setUnitId(res.unitId);
           setIsLoaded(true);
+          setAdFailed(false);
         } else {
           // Screen forbidden or ad fill failed; stay completely hidden with zero whitespace
           setIsAuthorized(false);
@@ -50,10 +62,30 @@ export const AdBannerView: React.FC<AdBannerViewProps> = ({
   }, [screenName]);
 
   // Completely vanish without consuming layout space if ad failed or screen is excluded by Google Play policy
-  if (!isAuthorized || !isLoaded) {
+  if (!isAuthorized || !isLoaded || adFailed || !unitId) {
     return null;
   }
 
+  // Render REAL LIVE Google AdMob banner when running on physical Android APK / AAB build
+  if (BannerAd && BannerAdSize) {
+    return (
+      <View style={[styles.container, { borderTopWidth: 0, borderBottomWidth: 0, marginVertical: 2 }, style]}>
+        <BannerAd
+          unitId={unitId}
+          size={BannerAdSize.BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: false,
+          }}
+          onAdFailedToLoad={(error: any) => {
+            console.log(`[AdMob Banner] Failed loading ad for screen ${screenName}:`, error);
+            setAdFailed(true);
+          }}
+        />
+      </View>
+    );
+  }
+
+  // Fallback simulation view solely for desktop Expo Go simulation where native modules cannot run
   return (
     <Surface
       style={[
