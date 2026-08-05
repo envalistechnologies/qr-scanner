@@ -57,9 +57,15 @@
         "react-native-google-mobile-ads",
         {
           "androidAppId": "ca-app-pub-7583323986111464~3189189516",
-          "iosAppId": "ca-app-pub-7583323986111464~3189189516",
-          "android_app_id": "ca-app-pub-7583323986111464~3189189516",
-          "ios_app_id": "ca-app-pub-7583323986111464~3189189516"
+          "iosAppId": "ca-app-pub-7583323986111464~3189189516"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "2.2.0"
+          }
         }
       ]
     ],
