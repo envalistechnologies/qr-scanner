@@ -25,9 +25,6 @@ export default function ScreensLayout() {
       <Stack.Screen name="privacy-policy" options={{ animation: 'fade_from_bottom' }} />
       <Stack.Screen name="help-support" options={{ animation: 'fade_from_bottom' }} />
       <Stack.Screen name="rate-app" options={{ animation: 'fade_from_bottom' }} />
-      <Stack.Screen name="feedback" options={{ animation: 'fade_from_bottom' }} />
-      <Stack.Screen name="licenses" options={{ animation: 'fade_from_bottom' }} />
-      <Stack.Screen name="app-information" options={{ animation: 'fade_from_bottom' }} />
     </Stack>
   );
 }

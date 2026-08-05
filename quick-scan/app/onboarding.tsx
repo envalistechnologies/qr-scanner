@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 import { useAppTheme } from '../hooks/useAppTheme';
 import { ScreenContainer, PageTitle, PremiumButton, TextButton, Icon, Tag } from '../components';
+import { StorageService } from '../storage/StorageService';
 
 interface OnboardingSlide {
   title: string;
@@ -43,9 +44,14 @@ export default function OnboardingScreen() {
   const slide = slides[currentSlide];
   const isLast = currentSlide === slides.length - 1;
 
+  const handleComplete = async () => {
+    await StorageService.getInstance().setItem('has_seen_onboarding', true);
+    router.replace('/(tabs)');
+  };
+
   const handleNext = () => {
     if (isLast) {
-      router.replace('/(tabs)');
+      handleComplete();
     } else {
       setCurrentSlide((prev) => prev + 1);
     }
@@ -57,7 +63,7 @@ export default function OnboardingScreen() {
         <Tag label={`STEP ${currentSlide + 1} OF ${slides.length}`} variant="default" />
         <TextButton
           title="Skip"
-          onPress={() => router.replace('/(tabs)')}
+          onPress={handleComplete}
           style={styles.skipButton}
         />
       </View>
