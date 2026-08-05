@@ -57,18 +57,10 @@
         "react-native-google-mobile-ads",
         {
           "androidAppId": "ca-app-pub-7583323986111464~3189189516",
-          "iosAppId": "ca-app-pub-7583323986111464~3189189516"
+          "iosAppId": "ca-app-pub-7583323986111464~3189189516",
+          "delayAppMeasurementInit": true
         }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "kotlinVersion": "2.2.20"
-          }
-        }
-      ],
-      "./plugins/withPlayServicesAdsFix"
+      ]
     ],
     "experiments": {
       "typedRoutes": false,
