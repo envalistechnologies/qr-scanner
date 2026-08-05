@@ -88,7 +88,7 @@ export default function SettingsScreen() {
 
   const getThemeSubtitle = () => {
     if (themeMode === 'dark') return 'Dark Theme • OLED Friendly';
-    if (themeMode === 'light') return 'Light Theme • Studio Visibility';
+    if (themeMode === 'light') return 'Light Theme • Clear Visibility';
     return 'System Default • Automatic OS Matching';
   };
 
@@ -97,7 +97,7 @@ export default function SettingsScreen() {
       {/* 1. HEADER */}
       <AppHeader
         title={t('settings_header', 'Settings & Preferences')}
-        subtitle={t('settings_subtitle', 'QuickScan Studio Configuration')}
+        subtitle={t('settings_subtitle', 'QuickScan Configuration')}
         showBack={true}
         showMore={true}
         onMore={() => setMoreSheetVisible(true)}
@@ -121,7 +121,7 @@ export default function SettingsScreen() {
         <Pressable
           onPress={() => router.push('/(screens)/about' as any)}
           style={styles.profileRow}
-          accessibilityLabel="Open About QuickScan studio"
+          accessibilityLabel="Open About QuickScan"
         >
           <View
             style={[
@@ -139,7 +139,7 @@ export default function SettingsScreen() {
               Version 1.0.0
             </Text>
             <Text style={[theme.typography.bodySmall, { color: theme.customColors.textSecondary, marginTop: 6 }]} numberOfLines={2}>
-              High-speed AI optical scanning, offline archiving & design suite. Software Development & Digital Marketing.
+              Fast, accurate scanning and code generation for all your QR and barcode formats.
             </Text>
           </View>
         </Pressable>
@@ -203,7 +203,7 @@ export default function SettingsScreen() {
         />
         <SettingRow
           title={t('generator_preferences', 'Default QR Generator Type')}
-          subtitle="Preferred template when opening design studio"
+          subtitle="Preferred default template when generating codes"
           icon="generator"
           type="dropdown"
           dropdownValue={defaultQrType}
@@ -350,75 +350,39 @@ export default function SettingsScreen() {
         />
       </View>
 
-      {/* 7. SUPPORT, ABOUT & FEEDBACK SECTION */}
+      {/* 7. SUPPORT & ABOUT SECTION */}
       <Text style={[theme.typography.labelLarge, { color: theme.customColors.primary, fontWeight: '800', marginTop: theme.spacing[8], marginBottom: theme.spacing[12] }]}>
-        {t('sec_support', 'STUDIO SUPPORT & ABOUT')}
+        {t('sec_support', 'SUPPORT & ABOUT')}
       </Text>
       <View style={[styles.sectionGroup, { backgroundColor: theme.customColors.surface, borderRadius: theme.radius[20], paddingVertical: theme.spacing[14], paddingHorizontal: theme.spacing[16], marginBottom: theme.spacing[32] }]}>
         <SettingRow
           title={t('about_quickscan', 'About QuickScan')}
-          subtitle="Envalis Technologies • Application Architecture"
+          subtitle="Version 1.0.0 • Application features and information"
           icon="info"
           type="chevron"
           onPress={() => router.push('/(screens)/about' as any)}
         />
         <SettingRow
           title={t('help_support', 'Help & Support Center')}
-          subtitle="Interactive FAQ cards, tutorials & troubleshooting answers"
+          subtitle="FAQ answers & general user guides"
           icon="help"
           type="chevron"
           onPress={() => router.push('/(screens)/help-support' as any)}
         />
         <SettingRow
-          title={t('submit_feedback', 'Submit User Feedback')}
-          subtitle="Send ideas, design suggestions or praise to our product team"
-          icon="sms"
-          type="chevron"
-          onPress={() => router.push('/(screens)/feedback' as any)}
-        />
-        <SettingRow
-          title={t('report_bug', 'Report Technical Bug')}
-          subtitle="Submit crash analytics or camera incompatibility logs"
-          icon="bug"
-          type="chevron"
-          onPress={() => router.push('/(screens)/feedback' as any)}
-        />
-        <SettingRow
-          title={t('contact_envalis', 'Contact Envalis Technologies')}
-          subtitle="envalistechnologies@gmail.com • Software Development & Digital Marketing"
-          icon="email"
-          type="chevron"
-          onPress={() => { }}
-        />
-        <SettingRow
-          title={t('rate_app', 'Rate QuickScan Studio 5 ★')}
-          subtitle="Help support continuous development & feature upgrades"
+          title={t('rate_app', 'Rate QuickScan 5 ★')}
+          subtitle="Help support continuous app updates"
           icon="rate"
           type="chevron"
           onPress={() => router.push('/(screens)/rate-app' as any)}
         />
         <SettingRow
           title={t('share_app', 'Share App with Friends')}
-          subtitle="Share install invite links across enterprise teams"
+          subtitle="Share app download link with friends and colleagues"
           icon="share"
           type="chevron"
-          onPress={() => { }}
-        />
-        <SettingRow
-          title={t('technical_info', 'Technical App Information')}
-          subtitle="Detailed build diagnostics, React Native & Expo SDK runtime"
-          icon="appInfo"
-          type="chevron"
-          showDivider={true}
-          onPress={() => router.push('/(screens)/app-information' as any)}
-        />
-        <SettingRow
-          title="Phase 21: Production QA & Benchmarking"
-          subtitle="Run 10,000-item stress tests & inspect real-time performance telemetry"
-          icon="analytics"
-          type="chevron"
           showDivider={false}
-          onPress={() => router.push('/(screens)/performance-qa' as any)}
+          onPress={() => { }}
         />
       </View>
 
@@ -434,7 +398,7 @@ export default function SettingsScreen() {
           {[
             { mode: 'system', title: 'System Default', desc: 'Automatically match iOS / Android os color theme' },
             { mode: 'dark', title: 'Dark Theme (OLED Friendly)', desc: 'Sleek neutral dark surfaces with vibrant blue accents' },
-            { mode: 'light', title: 'Light Theme (Studio Clean)', desc: 'Clean bright layout for high-visibility environments' },
+            { mode: 'light', title: 'Light Theme (Clean)', desc: 'Clean bright layout for high-visibility environments' },
           ].map((item) => (
             <ListItem
               key={item.mode}
@@ -696,7 +660,7 @@ export default function SettingsScreen() {
       >
         <View style={styles.sheetContent}>
           <Text style={[theme.typography.bodyMedium, { color: theme.customColors.textSecondary, lineHeight: 22, marginBottom: 16 }]}>
-            QuickScan Studio is software licensed under the Material 3 developer distribution guidelines. By operating this workstation, you acknowledge that all optical visual scanning occurs strictly upon local device silicon without external network extraction.
+            QuickScan is an intuitive code scanner and generator. By using this app, you acknowledge that all scanning occurs directly on your device locally for enhanced privacy.
           </Text>
           <OutlineButton title={t('done', 'I Acknowledge')} icon="check" onPress={() => setTosSheetVisible(false)} fullWidth />
         </View>

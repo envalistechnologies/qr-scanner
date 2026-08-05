@@ -10,8 +10,8 @@ export default function RateAppScreen() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <ScreenContainer scrollable withSafeArea testID="rate-app-placeholder-screen">
-      <AppHeader title="Rate Quick Scan" subtitle="Share your architectural feedback" showBack={true} />
+    <ScreenContainer scrollable withSafeArea testID="rate-app-screen">
+      <AppHeader title="Rate Quick Scan" subtitle="We value your feedback" showBack={true} />
 
       <View style={[styles.centerBox, { marginVertical: theme.spacing[24] }]}>
         <View
@@ -27,12 +27,12 @@ export default function RateAppScreen() {
           Enjoying Quick Scan?
         </Text>
         <Text style={[theme.typography.bodyMedium, { color: theme.customColors.textSecondary, textAlign: 'center', marginTop: 6, maxWidth: '85%' }]}>
-          Your feedback fuels our independent engineering iterations. Select a star rating below to evaluate our Phase 2 navigation architecture!
+          Your rating helps support continuous updates and improvements. Select a star rating below to let us know how we're doing!
         </Text>
       </View>
 
       {/* Star Rating Card */}
-      <SectionCard title="Select Rating Score" subtitle="Interactive Demo Placeholder">
+      <SectionCard title="Select Rating Score" subtitle="Touch stars to select">
         <View style={styles.starsRow}>
           {[1, 2, 3, 4, 5].map((star) => {
             const isSelected = star <= rating;
@@ -61,8 +61,8 @@ export default function RateAppScreen() {
           <Tag
             label={
               rating === 5
-                ? '5 STARS • FLICKER-FREE ARCHITECTURAL PRECISION!'
-                : `${rating} STARS • THANK YOU FOR EVALUATING!`
+                ? '5 STARS • THANK YOU SO MUCH!'
+                : `${rating} STARS • THANK YOU FOR RATING!`
             }
             variant={rating >= 4 ? 'success' : 'info'}
           />
@@ -73,7 +73,7 @@ export default function RateAppScreen() {
 
       {submitted ? (
         <View style={{ alignItems: 'center', marginBottom: theme.spacing[24] }}>
-          <Tag label="THANK YOU FOR YOUR DEMO RATING!" variant="success" dot />
+          <Tag label="THANK YOU FOR YOUR RATING!" variant="success" dot />
           <OutlineButton title="Return to Settings" icon="arrowBack" onPress={() => router.back()} fullWidth style={{ marginTop: 12 }} />
         </View>
       ) : (

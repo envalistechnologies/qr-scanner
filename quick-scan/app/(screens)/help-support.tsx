@@ -86,18 +86,7 @@ export default function HelpSupportScreen() {
 
   return (
     <ScreenContainer scrollable withSafeArea testID="help-support-screen">
-      <AppHeader title="Help & Support Center" subtitle="Studio Tutorials & Diagnostics" showBack={true} />
-
-      {/* Demo State Switcher */}
-      <View style={[styles.stateRow, { marginTop: theme.spacing[12] }]}>
-        <Text style={[theme.typography.labelSmall, { color: theme.customColors.textSecondary, marginBottom: 8 }]}>
-          SELECT DEMO UI STATE:
-        </Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipsWrap}>
-          <Chip label="✔ Active FAQ Center" selected={true} onPress={() => setUiState('faqs')} style={{ marginRight: 6 }} />
-          <Chip label="○ No FAQ Result UI" selected={false} onPress={() => setUiState('empty_search')} style={{ marginRight: 6 }} />
-        </ScrollView>
-      </View>
+      <AppHeader title="Help & Support Center" subtitle="FAQs & Tutorials" showBack={true} />
 
       {/* 1. HERO ILLUSTRATION CARD */}
       <View style={[styles.heroBadge, { backgroundColor: theme.customColors.primaryContainer, borderRadius: theme.radius[24], padding: theme.spacing[20], marginVertical: theme.spacing[14] }]}>
@@ -110,7 +99,7 @@ export default function HelpSupportScreen() {
               How can we help?
             </Text>
             <Text style={[theme.typography.bodySmall, { color: theme.customColors.textSecondary, marginTop: 4 }]}>
-              Search our self-service documentation archive or connect with our specialized support architects below.
+              Browse our frequently asked questions below for quick assistance and guides.
             </Text>
           </View>
         </View>
@@ -182,50 +171,6 @@ export default function HelpSupportScreen() {
           </Card>
         );
       })}
-
-      <View style={{ height: theme.spacing[16] }} />
-
-      {/* 4. CONTACT SUPPORT CARDS */}
-      <Text style={[theme.typography.labelLarge, { color: theme.customColors.primary, fontWeight: '800', marginBottom: theme.spacing[10] }]}>
-        NEED ADDITIONAL ENTERPRISE ASSISTANCE?
-      </Text>
-
-      <View style={styles.contactGrid}>
-        {[
-          { title: 'Submit User Feedback', desc: 'Share feature suggestions or UI proposals', icon: 'sms' as const, route: '/(screens)/feedback' },
-          { title: 'Report Technical Bug', desc: 'Submit decoding logs or camera anomalies', icon: 'bug' as const, route: '/(screens)/feedback' },
-          { title: 'Direct Email Desk', desc: 'envalistechnologies@gmail.com', icon: 'email' as const, route: null },
-        ].map((cnt, idx) => (
-          <Pressable
-            key={`cnt-${idx}`}
-            onPress={() => {
-              if (cnt.route) router.push(cnt.route as any);
-            }}
-            style={[
-              styles.contactCard,
-              {
-                backgroundColor: theme.customColors.surface,
-                borderRadius: theme.radius[18],
-                padding: theme.spacing[16],
-                borderColor: theme.customColors.divider,
-                borderWidth: StyleSheet.hairlineWidth,
-                marginBottom: theme.spacing[12],
-              },
-            ]}
-          >
-            <View style={styles.contactRow}>
-              <View style={[styles.contactIconWrap, { backgroundColor: theme.customColors.surfaceVariant, borderRadius: 10 }]}>
-                <Icon name={cnt.icon} size={24} color={theme.customColors.primary} />
-              </View>
-              <View style={{ flex: 1, marginHorizontal: 14 }}>
-                <Text style={[theme.typography.titleSmall, { color: theme.customColors.textPrimary, fontWeight: '700' }]}>{cnt.title}</Text>
-                <Text style={[theme.typography.bodySmall, { color: theme.customColors.textSecondary, marginTop: 3 }]}>{cnt.desc}</Text>
-              </View>
-              <Icon name="externalLink" size={20} color={theme.customColors.textSecondary} />
-            </View>
-          </Pressable>
-        ))}
-      </View>
 
       <View style={{ height: theme.spacing[32] }} />
     </ScreenContainer>

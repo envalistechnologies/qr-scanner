@@ -14,7 +14,7 @@ export default function AboutScreen() {
 
   return (
     <ScreenContainer scrollable withSafeArea testID="about-screen">
-      <AppHeader title="About QuickScan Studio" subtitle="Application Architecture" showBack={true} />
+      <AppHeader title="About QuickScan" subtitle="Version 1.0.0" showBack={true} />
 
       {/* 1. HERO LOGO & VERSION BRANDING */}
       <View style={styles.heroSection}>
@@ -28,7 +28,7 @@ export default function AboutScreen() {
           Version 1.0.0
         </Text>
         <Text style={[theme.typography.bodyMedium, { color: theme.customColors.textSecondary, marginTop: theme.spacing[14], textAlign: 'center', lineHeight: 22, maxWidth: 360 }]}>
-          A premier Material 3 intelligent mobile optical scanning and design workstation. Built for high-density barcode decoding, instant offline vault archiving, and customized matrix synthesis.
+          A fast and reliable mobile scanning and code generation application. Built for instant barcode scanning, local history saving, and custom code generation.
         </Text>
       </View>
 
@@ -36,14 +36,14 @@ export default function AboutScreen() {
 
       {/* 2. CORE FEATURE LIST CARD */}
       <Text style={[theme.typography.labelLarge, { color: theme.customColors.primary, fontWeight: '800', marginTop: theme.spacing[8], marginBottom: theme.spacing[12] }]}>
-        ENTERPRISE FEATURE SUITE
+        KEY FEATURES
       </Text>
       <Card variant="elevated" elevationLevel={1} style={[styles.infoCard, { backgroundColor: theme.customColors.surface, borderRadius: theme.radius[20], padding: theme.spacing[20], marginBottom: theme.spacing[28] }]}>
         {[
-          { title: 'AI Optical Recognition Engine', desc: 'Real-time multi-code decoding with sub-50ms latency across 15+ symbol standards.', icon: 'target' as const },
-          { title: 'Zero-Latency Offline Vault', desc: 'Secure local storage archive ensuring absolute data sovereignty and instantaneous recall.', icon: 'history' as const },
-          { title: 'Dynamic QR Design Studio', desc: 'Tailored matrix generator supporting custom HSL palettes, error correction levels and branding templates.', icon: 'generator' as const },
-          { title: 'Enterprise Security Compliance', desc: 'Strictly offline processing with zero background data telemetric extraction.', icon: 'secure' as const },
+          { title: 'Fast Optical Recognition', desc: 'Real-time decoding with high accuracy across standard barcode formats.', icon: 'target' as const },
+          { title: 'Local Storage Vault', desc: 'Secure local device archiving ensuring complete privacy and instant access.', icon: 'history' as const },
+          { title: 'Custom QR Generator', desc: 'Create tailored QR codes for websites, Wi-Fi networks, contacts, and more.', icon: 'generator' as const },
+          { title: 'Privacy First', desc: 'Strictly local scanning and decoding with zero external background telemetry.', icon: 'secure' as const },
         ].map((feat, idx, arr) => (
           <View key={`feat-${idx}`} style={[styles.featureItem, idx < arr.length - 1 && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.customColors.divider, paddingBottom: 16, marginBottom: 16 }]}>
             <View style={[styles.featIconWrap, { backgroundColor: theme.customColors.surfaceVariant, borderRadius: 15 }]}>
@@ -55,42 +55,6 @@ export default function AboutScreen() {
             </View>
           </View>
         ))}
-      </Card>
-
-      {/* 3. TECHNOLOGY STACK ARCHITECTURE */}
-      <Text style={[theme.typography.labelLarge, { color: theme.customColors.primary, fontWeight: '800', marginTop: theme.spacing[8], marginBottom: theme.spacing[12] }]}>
-        TECHNOLOGY STACK & RUNTIME
-      </Text>
-      <Card variant="outlined" style={[styles.infoCard, { backgroundColor: theme.customColors.surfaceVariant, borderRadius: theme.radius[20], padding: theme.spacing[20], marginBottom: theme.spacing[28] }]}>
-        {[
-          { label: 'Core Framework', val: 'React Native 0.76 (Fabric Enabled)' },
-          { label: 'Runtime Environment', val: 'Expo SDK 52 (Managed Workflow)' },
-          { label: 'Animation Engine', val: 'React Native Reanimated 3 (120 FPS)' },
-          { label: 'Language Standard', val: 'TypeScript 5.x (Strict Architecture)' },
-          { label: 'Design System', val: 'Google Material 3 Mobile Typography' },
-        ].map((tech, idx) => (
-          <View key={`tech-${idx}`} style={[styles.techRow, { paddingVertical: 6 }]}>
-            <Text style={[theme.typography.labelMedium, { color: theme.customColors.textSecondary, fontWeight: '600', flex: 1 }]}>{tech.label}</Text>
-            <Text style={[theme.typography.labelLarge, { color: theme.customColors.textPrimary, fontWeight: '700', textAlign: 'right', flex: 1 }]} numberOfLines={1}>{tech.val}</Text>
-          </View>
-        ))}
-      </Card>
-
-      {/* 4. DEVELOPED BY SECTION */}
-      <Text style={[theme.typography.labelLarge, { color: theme.customColors.primary, fontWeight: '800', marginTop: theme.spacing[8], marginBottom: theme.spacing[12] }]}>
-        DEVELOPED BY
-      </Text>
-      <Card variant="elevated" elevationLevel={2} style={[styles.infoCard, { backgroundColor: theme.customColors.surface, borderRadius: theme.radius[20], padding: theme.spacing[20], marginBottom: theme.spacing[32] }]}>
-        <View style={styles.devHeaderRow}>
-          <View style={[styles.devAvatar, { backgroundColor: theme.customColors.primaryContainer, borderRadius: 18 }]}>
-            <Icon name="developer" size={32} color={theme.customColors.primary} />
-          </View>
-          <View style={{ flex: 1, marginLeft: 16 }}>
-            <Text style={[theme.typography.titleLarge, { color: theme.customColors.textPrimary, fontWeight: '800' }]}>Envalis Technologies</Text>
-            <Text style={[theme.typography.bodyMedium, { color: theme.customColors.primary, fontWeight: '600', marginTop: 4 }]}>envalistechnologies@gmail.com</Text>
-            <Text style={[theme.typography.bodySmall, { color: theme.customColors.textSecondary, marginTop: 4 }]}>Software Development & Digital Marketing</Text>
-          </View>
-        </View>
       </Card>
 
       <View style={{ height: theme.spacing[24] }} />
